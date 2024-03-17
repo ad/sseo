@@ -1,0 +1,25 @@
+# github.com/PuerkitoBio/goquery v1.9.1
+## explicit; go 1.18
+github.com/PuerkitoBio/goquery
+# github.com/andybalholm/cascadia v1.3.2
+## explicit; go 1.16
+github.com/andybalholm/cascadia
+# github.com/sourcegraph/conc v0.3.0
+## explicit; go 1.19
+github.com/sourcegraph/conc
+github.com/sourcegraph/conc/internal/multierror
+github.com/sourcegraph/conc/panics
+github.com/sourcegraph/conc/pool
+# github.com/temoto/robotstxt v1.1.2
+## explicit; go 1.11
+github.com/temoto/robotstxt
+# go.uber.org/atomic v1.7.0
+## explicit; go 1.13
+go.uber.org/atomic
+# go.uber.org/multierr v1.9.0
+## explicit; go 1.19
+go.uber.org/multierr
+# golang.org/x/net v0.22.0
+## explicit; go 1.18
+golang.org/x/net/html
+golang.org/x/net/html/atom
