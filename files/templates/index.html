@@ -1,0 +1,23 @@
+{{define "title"}}Stupid seo checker{{end}}
+
+{{define "body"}}
+<main class="container">
+    <div>
+        <h1>Stupid SEO Checker</h1>
+        <form action="/check" method="post">
+            <fieldset role="group">
+                <input type="search" name="url" placeholder="Enter URL">
+                <button type="submit" class="primary" hx-post="/check" hx-target="#result">Check</button>
+            </fieldset>
+            <fieldset>
+                <label for="terms">
+                    <input type="checkbox" role="switch" id="force" name="force" value="1">
+                    Force check
+                </label>
+            </fieldset>
+            <!--  aria-busy="true" aria-label="Please wait…" -->
+        </form>
+        <div id="result"></div>
+    </div>
+</main>
+{{end}}

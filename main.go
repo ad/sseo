@@ -1,76 +1,44 @@
 package main
 
 import (
+	"context"
 	"fmt"
-	"strings"
+	"os"
+	"os/signal"
+	"syscall"
 
-	"github.com/ad/sseo/rules"
-	"github.com/sourcegraph/conc/pool"
+	"github.com/ad/sseo/app"
 )
 
-/*
- наличие и заполнение <title> (длина текста)
- наличие и заполнение <meta name="description" content=""> (длина текста)
- Наличие H1
- Приоритет заголовков H1-H4
- Наличие robots.txt и Allow в нем
- Наличие sitemap.xml
-*/
+var (
+	version = "dev"
+)
 
 func main() {
-	fmt.Println("start testing...")
+	fmt.Printf("starting version %s\n", version)
 
-	urls := []string{
-		"https://google.com",
-		"https://yandex.ru",
-		"https://mail.ru",
-		"https://rambler.ru",
-		"https://yahoo.com",
-		"https://bing.com",
-		"https://duckduckgo.com",
-		"https://ask.com",
-		"https://wow.com",
-		"https://excite.com",
-		"https://alhea.com",
-		"https://info.com",
+	sigs := make(chan os.Signal, 1)
+
+	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
+
+	done := make(chan bool, 1)
+
+	ctx := context.Background()
+	ctx, cancel := signal.NotifyContext(ctx, os.Interrupt)
+	defer cancel()
+
+	if err := app.Run(ctx, os.Stdout, os.Args); err != nil {
+		fmt.Fprintf(os.Stderr, "%s\n", err)
+		os.Exit(1)
 	}
 
-	p := pool.New().WithMaxGoroutines(2)
-	for _, elem := range urls {
-		elem := elem
-		p.Go(func() {
-			checkURL(elem)
-		})
-	}
-	p.Wait()
+	go func() {
+		sig := <-sigs
+		fmt.Println(sig)
+		cancel()
+		done <- true
+	}()
 
-	fmt.Println("end testing...")
-	fmt.Println("")
-}
-
-func checkURL(url string) {
-	// fmt.Println("start testing... ", url)
-
-	ruleChecker, errRules := rules.NewRulesWith(url)
-	if errRules != nil {
-		fmt.Println("failed to create rules:", errRules)
-
-		return
-	}
-	ruleChecker.AddRule(rules.WithStatus(ruleChecker.StatusCode, []int{200}))
-	ruleChecker.AddRule(rules.WithTitle(ruleChecker.Parsed))
-	ruleChecker.AddRule(rules.WithDescription(ruleChecker.Parsed))
-	ruleChecker.AddRule(rules.WithHeading(ruleChecker.Parsed))
-	ruleChecker.AddRule(rules.WithRobotsTXT(ruleChecker.URL))
-	ruleChecker.AddRule(rules.WithSitemap(ruleChecker.URL))
-
-	errors := ruleChecker.Check()
-
-	if len(errors) > 0 {
-		fmt.Println(url, "errors:", strings.Join(errors, ", "))
-	} else {
-		fmt.Println(url, "OK")
-	}
-
-	// fmt.Printf("errors %#v\n\n", errors)
+	<-done
+	fmt.Println("exiting")
 }
