@@ -1,6 +1,6 @@
 module github.com/ad/sseo
 
-go 1.22.1
+go 1.22.0
 
 require (
 	github.com/PuerkitoBio/goquery v1.9.1
