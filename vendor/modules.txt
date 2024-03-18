@@ -1,24 +1,21 @@
 # github.com/PuerkitoBio/goquery v1.9.1
 ## explicit; go 1.18
 github.com/PuerkitoBio/goquery
+# github.com/ad/lru v0.0.0-20220811203621-3f121ec78c65
+## explicit; go 1.19
+github.com/ad/lru
+github.com/ad/lru/internal
+# github.com/alitto/pond v1.8.3
+## explicit; go 1.19
+github.com/alitto/pond
 # github.com/andybalholm/cascadia v1.3.2
 ## explicit; go 1.16
 github.com/andybalholm/cascadia
-# github.com/sourcegraph/conc v0.3.0
-## explicit; go 1.19
-github.com/sourcegraph/conc
-github.com/sourcegraph/conc/internal/multierror
-github.com/sourcegraph/conc/panics
-github.com/sourcegraph/conc/pool
+# github.com/stretchr/testify v1.8.1
+## explicit; go 1.13
 # github.com/temoto/robotstxt v1.1.2
 ## explicit; go 1.11
 github.com/temoto/robotstxt
-# go.uber.org/atomic v1.7.0
-## explicit; go 1.13
-go.uber.org/atomic
-# go.uber.org/multierr v1.9.0
-## explicit; go 1.19
-go.uber.org/multierr
 # golang.org/x/net v0.22.0
 ## explicit; go 1.18
 golang.org/x/net/html
