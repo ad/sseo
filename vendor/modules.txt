@@ -5,14 +5,19 @@ github.com/PuerkitoBio/goquery
 ## explicit; go 1.19
 github.com/ad/lru
 github.com/ad/lru/internal
+# github.com/ad/sseo v0.0.0-20240318181348-d6e7bd39df8e
+## explicit; go 1.22.1
+github.com/ad/sseo/app
+github.com/ad/sseo/checker
+github.com/ad/sseo/files
+github.com/ad/sseo/rules
+github.com/ad/sseo/server
 # github.com/alitto/pond v1.8.3
 ## explicit; go 1.19
 github.com/alitto/pond
 # github.com/andybalholm/cascadia v1.3.2
 ## explicit; go 1.16
 github.com/andybalholm/cascadia
-# github.com/stretchr/testify v1.8.1
-## explicit; go 1.13
 # github.com/temoto/robotstxt v1.1.2
 ## explicit; go 1.11
 github.com/temoto/robotstxt
