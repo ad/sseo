@@ -6,7 +6,7 @@ github.com/PuerkitoBio/goquery
 github.com/ad/lru
 github.com/ad/lru/internal
 # github.com/ad/sseo v0.0.0-20240318181348-d6e7bd39df8e
-## explicit; go 1.22.1
+## explicit; go 1.22.0
 github.com/ad/sseo/app
 github.com/ad/sseo/checker
 github.com/ad/sseo/files
